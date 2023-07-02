@@ -12,8 +12,8 @@ function App() {
   const [wage, setWage] = useState(0);
   const [newWage, setNewWage] = useState(0)
   const [num, setNum] = useState(0)
-  //const { REACT_APP_API } = process.env;
-  const REACT_APP_API = process.env.REACT_APP_API
+  const { REACT_APP_API } = process.env;
+
 
   console.log("this is api:" + REACT_APP_API)
 
