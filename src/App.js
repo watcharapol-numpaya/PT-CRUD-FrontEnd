@@ -14,8 +14,9 @@ function App() {
   const [num, setNum] = useState(0)
   const { REACT_APP_API } = process.env;
 
-  console.log(REACT_APP_API)
+  console.log("this is api:" + REACT_APP_API)
 
+  console.log("this is api 2:" + process.env.REACT_APP_API)
 
 
   const getEmployees = async () => {
