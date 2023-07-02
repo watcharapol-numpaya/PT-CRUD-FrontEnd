@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 function App() {
 
   const [employ, setEmploy] = useState([]);
-
+  const [employDirect, setEmployDirect] = useState([]);
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const [country, setCountry] = useState("");
@@ -30,6 +30,19 @@ function App() {
     }
 
   }
+
+  const getEmployeesDirect = async () => {
+    try {
+      await Axios.get("http://192.168.0.202:5000" + '/employees').then((res) => {
+        setEmployDirect(res.data)
+      })
+    } catch (err) {
+      console.log('Error fetching employees:', err)
+    }
+
+  }
+
+
 
   // const a = (x) => {
   //   return new Promise((resolve, reject) => {
@@ -160,7 +173,24 @@ function App() {
           )
         })}
       </div>
-
+      <div className="employees">
+        <button className='btn btn-primary' onClick={getEmployeesDirect}>Show Employee Direct</button>
+        <br /><br />
+        {employDirect.map((val, index) => {
+          return (
+            <div className='employee card' key={index}>
+              <div className='card-body text-left'>
+                <p className='card-text'>Name: {val.name}</p>
+                <p className='card-text'>Age: {val.age}</p>
+                <p className='card-text'>Country: {val.country}</p>
+                <p className='card-text'>Position: {val.position}</p>
+                <p className='card-text'>Wage: {val.wage}</p>
+               
+              </div>
+            </div>
+          )
+        })}
+      </div>
 
     </div>
   );
