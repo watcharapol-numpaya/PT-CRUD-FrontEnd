@@ -12,14 +12,15 @@ function App() {
   const [wage, setWage] = useState(0);
   const [newWage, setNewWage] = useState(0)
   const [num, setNum] = useState(0)
-  const { REACT_APP_API } = process.env;
+  //const { REACT_APP_API } = process.env;
+  const REACT_APP_API = process.env.REACT_APP_API
 
   console.log("this is api:" + REACT_APP_API)
 
   console.log(REACT_APP_API + '/employees')
 
 
-  
+
   const getEmployees = async () => {
     try {
       await Axios.get(REACT_APP_API + '/employees').then((res) => {
@@ -74,7 +75,7 @@ function App() {
 
     console.log(newEmployee)
 
-    Axios.post('http://localhost:5000/create', newEmployee).then(() => {
+    Axios.post(`${REACT_APP_API}/create`, newEmployee).then(() => {
 
       setEmploy([...employ, newEmployee])
 
@@ -95,7 +96,7 @@ function App() {
       wage: newWage
     }
 
-    Axios.put('http://localhost:5000/update', newWageData).then((res) => {
+    Axios.put(`${REACT_APP_API}/update`, newWageData).then((res) => {
       setEmploy(
         employ.map((val) => {
           return val.id == id ? {
@@ -112,7 +113,7 @@ function App() {
   }
 
   const deleteEmployee = (id) => {
-    Axios.delete(`http://localhost:5000/delete/${id}`).then((res) => {
+    Axios.delete(`${REACT_APP_API}/delete/${id}`).then((res) => {
       setEmploy(
         employ.filter((val) => {
           return val.id != id
@@ -185,7 +186,7 @@ function App() {
                 <p className='card-text'>Country: {val.country}</p>
                 <p className='card-text'>Position: {val.position}</p>
                 <p className='card-text'>Wage: {val.wage}</p>
-               
+
               </div>
             </div>
           )
