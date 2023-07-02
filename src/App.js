@@ -16,9 +16,10 @@ function App() {
 
   console.log("this is api:" + REACT_APP_API)
 
-  console.log("this is api 2:" + process.env.REACT_APP_API)
+  console.log(REACT_APP_API + '/employees')
 
 
+  
   const getEmployees = async () => {
     try {
       await Axios.get(REACT_APP_API + '/employees').then((res) => {
