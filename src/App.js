@@ -2,7 +2,8 @@ import Axios from 'axios'
 import React, { useEffect, useState } from 'react';
 
 function App() {
-
+  
+  const { REACT_APP_API } = process.env;
   const [employ, setEmploy] = useState([]);
   const [employDirect, setEmployDirect] = useState([]);
   const [name, setName] = useState("");
@@ -12,7 +13,7 @@ function App() {
   const [wage, setWage] = useState(0);
   const [newWage, setNewWage] = useState(0)
   const [num, setNum] = useState(0)
-  const { REACT_APP_API } = process.env;
+
 
 
   console.log("this is api:" + REACT_APP_API)
